@@ -1,0 +1,76 @@
+<%= form_for @flight, :html => { :class => "form-horizontal flight" } do |f| %>
+
+  <% if @flight.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@flight.errors.count, "error") %> prohibited this flight from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @flight.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :flight_name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :flight_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:flight_name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :departure_location, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :departure_location, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:departure_location) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :departure_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :departure_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:departure_date) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :departure_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :departure_time, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:departure_time) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :arrival_location, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :arrival_location, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:arrival_location) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :arrival_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :arrival_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:arrival_date) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :arrival_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :arrival_time, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:arrival_time) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                flights_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

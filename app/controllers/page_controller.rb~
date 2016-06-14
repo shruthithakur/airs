@@ -1,0 +1,16 @@
+class PageController < ApplicationController
+ def welcome to ravenjets 
+end
+
+ def home
+  end
+
+  def aboutus
+  end
+
+  def faqs
+  end
+
+  def contact
+  end
+end
