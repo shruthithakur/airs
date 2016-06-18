@@ -51,6 +51,11 @@ class FlightsController < ApplicationController
     end
   end
   def seats 
+     n_rows = @flight.seats.order(row: :desc).pluck('DISTINCT row')
+    @seats_arr = []
+    n_rows.each do |row_num|
+      @seats_arr.push(@flight.seats.order(:column).where(row: row_num).to_a)
+    end
   end
   # DELETE /flights/1
   # DELETE /flights/1.json

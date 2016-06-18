@@ -5,6 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+<th> book seat </th>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:flight_name) %></th>
       <th><%= model_class.human_attribute_name(:departure_location) %></th>
@@ -24,7 +25,7 @@
         <td><%= flight.flight_name %></td>
         <td><%= flight.departure_location %></td>
         <td><%= flight.departure_date %></td>
-        <td><%= flight.departure_time %></td>
+        <td><%= flight.departure_time %></td>s
         <td><%= flight.arrival_location %></td>
         <td><%= flight.arrival_date %></td>
         <td><%= flight.arrival_time %></td>
@@ -37,6 +38,7 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+   <%= link_to 'seats',seats_flight_path(id: flight.id) %>
         </td>
       </tr>
     <% end %>

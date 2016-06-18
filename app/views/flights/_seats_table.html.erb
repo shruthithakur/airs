@@ -1,0 +1,78 @@
+<div class="col-xs-12">
+  <div class="bg"></div>
+</div>
+
+<div class="col-xs-12">
+  <div class="seats-legend">
+    
+      <%= image_tag("free.png", style: "width: auto; height: 40px;") %>
+        <% count_available = 0; sum_available = 0 %>
+        <% count_reserved = 0; sum_reserved = 0 %>
+        <% @seats_arr.each do |row| %>
+          <% row.each do |seat| %>
+            <% if seat.status == 'available' %>
+              <% count_available += 1 %>
+              <% sum_available += seat.price.to_i %>
+            <% else %>
+              <% count_reserved += 1 %>
+              <% sum_reserved += seat.price.to_i %>
+            <% end %>
+          <% end %>
+        <% end %>
+         <%= count_available %>, <%= sum_available %>€
+      <%= image_tag("reserved.png", style: "width: auto; height: 40px;") %>
+        <%= count_reserved %>, <%= sum_reserved %>€
+    
+  </div>
+</div>
+
+<div class="col-xs-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h3>Flight</h3></th>
+        <th><h3>Seats</h3></th>
+        <th><h3>Flight</h3></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @seats_arr.each do |row| %>
+        <tr>
+          <td class="table-cell"><h3><%= row[0].row %></h3></td>
+          <td class="table-cell">
+            <% row.each do |seat| %>
+              
+               
+                  <% if seat.status == 'available' %>
+                    <span><%= seat.column %></span>
+                    <%= image_tag("free.png", id: "img-#{seat.row}-#{seat.column}", class: "available") %>
+                  <% else %>
+                    <%= image_tag("reserved.png", id: "img-#{seat.row}-#{seat.column}", class: "reserved") %>
+                  <% end %>
+                </div>
+              <% if (seat.row == 10 || seat.row == 11) && seat.column == 5 %>
+                <div class="separator"></div>
+              <% end %>
+              <% if seat.row == 9 && (seat.column == 5 || seat.column == 14) %>
+                <div class="separator-sm"></div>
+              <% end %>
+            <% end %>
+            <% if row[0].row == 9 %>
+              <br>
+              <div>
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                <h3 style="margin: 20px 50px 10px 50px; display: inline-block;">parveke</h3>
+                <span class="glyphicon glyphicon-arrow-up"></span>
+              </div>
+            <% elsif row[0].row == 4 %>
+              <br><div style="height: 50px;"></div>
+            <% end %>
+          </td>
+          <td class="table-cell"><h3><%= row[0].row %></h3></td>
+        </tr>
+        <br>
+      <% end %>
+    </tbody>
+  </table>
+</div>
