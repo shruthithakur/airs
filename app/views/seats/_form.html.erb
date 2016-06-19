@@ -1,41 +1,69 @@
-<%= form_for(@seat) do |f| %>
-  <% if @seat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being saved:</h2>
+<%= form_for @seat, :html => { :class => "form-horizontal seat" } do |f| %>
 
-      <ul>
-      <% @seat.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @seat.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @seat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :seat_id %><br>
-    <%= f.text_field :seat_id %>
+  <div class="form-group">
+    <%= f.label :seat_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :seat_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:seat_id) %>
   </div>
-  <div class="field">
-    <%= f.label :row %><br>
-    <%= f.text_field :row %>
+  <div class="form-group">
+    <%= f.label :row, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :row, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:row) %>
   </div>
-  <div class="field">
-    <%= f.label :column %><br>
-    <%= f.text_field :column %>
+  <div class="form-group">
+    <%= f.label :column, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :column, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:column) %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
+  <div class="form-group">
+    <%= f.label :price, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :price, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:price) %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :status, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:status) %>
   </div>
-  <div class="field">
-    <%= f.label :flight_id %><br>
-    <%= f.text_field :flight_id %>
+  <div class="form-group">
+    <%= f.label :flight_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :flight_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:flight_id) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                seats_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>
