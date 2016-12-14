@@ -1,63 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Seats</h1>
-
-
-<!-- <div style="margin-top: 200px;">
-  <h3>LIPPUJEN VARAAMINEN
-  <span class="label label-primary" style="font-size: 110%;">0465734026</span></h3>
-</div> -->
-
-<!-- <div class="container container-center"> -->
-
-<%= render partial: "seats_table" %>
-
-  <% if logged_in? && current_user.is_admin %>
-
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-4">
-        <%= button_to "Päivittää", update_path, method: 'post', class: 'btn btn-block btn-primary', id: 'btn-update', params: { seats_to_update: "get_seats_arr()" } %>
-      </div>
-      <div class="col-xs-4">
-        <%= button_to "Peruuttaa", root_path, method: 'get', class: 'btn btn-block btn-default' %>
-      </div>
-    </div>
-    <br>
-
-  <% end %>
-
-<!-- </div> -->
-
-<table>
+<%- model_class = Seat -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Seat</th>
-      <th>Row</th>
-      <th>Column</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Flight</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:seat_id) %></th>
+      <th><%= model_class.human_attribute_name(:row) %></th>
+      <th><%= model_class.human_attribute_name(:column) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:flight_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @seats.each do |seat| %>
       <tr>
+        <td><%= link_to seat.id, seat_path(seat) %></td>
         <td><%= seat.seat_id %></td>
         <td><%= seat.row %></td>
         <td><%= seat.column %></td>
         <td><%= seat.price %></td>
         <td><%= seat.status %></td>
         <td><%= seat.flight_id %></td>
-        <td><%= link_to 'Show', seat %></td>
-        <td><%= link_to 'Edit', edit_seat_path(seat) %></td>
-        <td><%= link_to 'Destroy', seat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l seat.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_seat_path(seat), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      seat_path(seat),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Seat', new_seat_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_seat_path,
+            :class => 'btn btn-primary' %>

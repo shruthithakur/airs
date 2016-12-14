@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :passenger_details
+  get 'page/PassengerDetails'
+
+  resources :passenger_details
+get 'paypalpayment/index'
   devise_for :users
   resources :seats
   resources :flights do
@@ -7,6 +12,8 @@ Rails.application.routes.draw do
   end
   end
   root 'page#home'
+    
+  get 'page/passengerdetail'
 
   get 'page/aboutus'
 

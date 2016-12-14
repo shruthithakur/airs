@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy, :seats]
+  before_action :authenticate_user!, only:[:seats]
 
   # GET /flights
   # GET /flights.json

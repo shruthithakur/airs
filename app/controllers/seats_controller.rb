@@ -1,4 +1,5 @@
 class SeatsController < ApplicationController
+  before_action :check_authenticaly, only: [:seats]
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
 
   # GET /seats
@@ -61,12 +62,31 @@ class SeatsController < ApplicationController
     end
   end
 
+def checkout
+      response = EXPRESS_GATEWAY.setup_purchase(100,
+      :ip                => request.remote_ip,
+      :return_url        => page_flight_url,
+      :cancel_return_url =>page_flight_url
+       )
+byebug
+redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+end 
+end
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_seat
       @seat = Seat.find(params[:id])
     end
 
+  
+    def check_authenticaly
+      if current_user.present?
+        return
+      else
+        redirect_to :new_user_session_path
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def seat_params
       params.require(:seat).permit(:seat_id, :row, :column, :price, :status, :flight_id)

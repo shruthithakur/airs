@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607142528) do
+ActiveRecord::Schema.define(version: 20161210120234) do
 
   create_table "flights", force: :cascade do |t|
     t.string   "flight_name"
@@ -23,6 +23,28 @@ ActiveRecord::Schema.define(version: 20160607142528) do
     t.string   "arrival_time"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "passenger_details", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "nationality"
+    t.string   "passport_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "passengers", force: :cascade do |t|
+    t.string   "passenger_first"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "age"
+    t.string   "nationality"
+    t.string   "passport_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "seats", force: :cascade do |t|
@@ -49,6 +71,8 @@ ActiveRecord::Schema.define(version: 20160607142528) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "privilege"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

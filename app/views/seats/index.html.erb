@@ -14,6 +14,7 @@
       <th><%= model_class.human_attribute_name(:flight_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% if user_signed_in? %>
     </tr>
   </thead>
   <tbody>
@@ -34,13 +35,12 @@
                       seat_path(seat),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+             :class => 'btn btn-xs btn-danger' %>
         </td>
-      </tr>
+       </tr>
     <% end %>
   </tbody>
 </table>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_seat_path,
             :class => 'btn btn-primary' %>

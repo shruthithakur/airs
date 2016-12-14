@@ -1,12 +1,14 @@
 class PageController < ApplicationController
- def welcome to ravenjets 
-end
-
+before_action :authenticate_user!, only:[:seats]
  def home
   end
 
   def aboutus
   end
+
+def
+PassengerDetail
+ end
 
   def faqs
   end

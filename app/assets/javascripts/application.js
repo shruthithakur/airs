@@ -15,3 +15,17 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+    $(".available").click(function(){
+        $(this).siblings(".selected").show();
+        $(this).hide();
+        price = $(".increament_price").html();
+        $(".increament_price").html(parseInt(price)+10)
+    });
+    $(".selected").click(function(){
+        $(this).siblings(".available").show();
+        $(this).hide();
+        price = $(".increament_price").html();
+        $(".increament_price").html(parseInt(price)-10)
+    });
+});

@@ -2,29 +2,7 @@
   <div class="bg"></div>
 </div>
 
-<div class="col-xs-12">
-  <div class="seats-legend">
-    
-      <%= image_tag("free.png", style: "width: auto; height: 40px;") %>
-        <% count_available = 0; sum_available = 0 %>
-        <% count_reserved = 0; sum_reserved = 0 %>
-        <% @seats_arr.each do |row| %>
-          <% row.each do |seat| %>
-            <% if seat.status == 'available' %>
-              <% count_available += 1 %>
-              <% sum_available += seat.price.to_i %>
-            <% else %>
-              <% count_reserved += 1 %>
-              <% sum_reserved += seat.price.to_i %>
-            <% end %>
-          <% end %>
-        <% end %>
-         <%= count_available %>, <%= sum_available %>€
-      <%= image_tag("reserved.png", style: "width: auto; height: 40px;") %>
-        <%= count_reserved %>, <%= sum_reserved %>€
-    
-  </div>
-</div>
+
 
 <div class="col-xs-12">
   <table class="table">
@@ -46,7 +24,10 @@
                
                   <% if seat.status == 'available' %>
                     <span><%= seat.column %></span>
-                    <%= image_tag("free.png", id: "img-#{seat.row}-#{seat.column}", class: "available") %>
+                    <span>
+                    <%= image_tag("free.png", id: "img-#{seat.row}-#{seat.column}", class: "available") %> 
+      <%= image_tag("selected.png",style: "display:none",class: "selected") %> 
+    </span>
                   <% else %>
                     <%= image_tag("reserved.png", id: "img-#{seat.row}-#{seat.column}", class: "reserved") %>
                   <% end %>
@@ -65,7 +46,7 @@
                 <h3 style="margin: 20px 50px 10px 50px; display: inline-block;">parveke</h3>
                 <span class="glyphicon glyphicon-arrow-up"></span>
               </div>
-            <% elsif row[0].row == 4 %>
+            <% elsi f row[0].row == 4 %>
               <br><div style="height: 50px;"></div>
             <% end %>
           </td>

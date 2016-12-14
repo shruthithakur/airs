@@ -22,5 +22,15 @@ module Airs
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-  end
+
+ ActiveMerchant::Billing::Base.mode = :test
+   paypal_options = {
+   :login => "shrutu_senorita-facilitator_api1.yahoo.com",
+   :password => "Z32F39FQ68KT2PYD",
+   :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31ADwyJ0ZMXwYPzA8Hj-VzVP.vYvKy"
+  }
+ ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+ ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+ config.active_record.raise_in_transactional_callbacks = true
+end
 end
